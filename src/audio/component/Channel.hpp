@@ -16,7 +16,7 @@ namespace fls {
 
         explicit Channel(ChannelType type);
 
-        Channel(ChannelType type, float inputGain, float pan, float volume);
+        Channel(ChannelType type, float inputGain, bool phase, float pan, float volume);
 
         // TODO: Impl audio callback
         void audioCallback(...) {}
@@ -24,6 +24,7 @@ namespace fls {
     protected:
         ChannelType m_type;
         float m_inputGain;
+        bool m_phase;
         // std::vector<Insert> inserts;
         float m_pan;
         float m_volume;

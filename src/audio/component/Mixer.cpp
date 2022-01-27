@@ -14,13 +14,13 @@ void Mixer::audioCallback(
     PaStreamCallbackFlags statusFlags
 ) {
     /*
-     * Pseudo-code
+     * Pseudocode
      *
      * use a circular running buffer
      *
      * for each channel
      * -> get the buffer at the current frame
-     * -> add each sample to running buffer / numChannels in mixer
+     * -> add each sample to the running buffer / numChannels in mixer
      */
     // TODO: How the fuck do I do that good?
 }
