@@ -101,7 +101,7 @@ AudioSystem::~AudioSystem() {
     }
     if(m_started) {
         Pa_CloseStream(*m_stream);
-        m_stream = nullptr;
+        *m_stream = nullptr;
     }
 }
 
