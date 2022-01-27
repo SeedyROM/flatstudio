@@ -44,6 +44,6 @@ namespace fls {
         std::unique_ptr<PaDeviceInfo> m_outputDeviceInfo;
         std::unique_ptr<PaStreamParameters> m_inputStreamParameters;
         std::unique_ptr<PaStreamParameters> m_outputStreamParameters;
-        std::unique_ptr<PaStream*> m_stream;
+        std::unique_ptr<PaStream *> m_stream;
     };
 }
