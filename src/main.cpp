@@ -3,9 +3,16 @@
 #include "project/Workspace.hpp"
 
 int main() {
-    AudioSystemSettings settings(44100, 512, 2);
-    Workspace workspace(settings);
+    try {
+        fls::AudioSystemSettings settings(44100, 512, 1, 2);
+        fls::Workspace workspace(settings);
 
-    std::cout << "Hello, World!" << std::endl;
+        workspace.open();
+    } catch(fls::AudioSystemInitException &e) {
+        std::cerr << "Failed to create workspace" << "\n";
+        std::cerr << e.what() << "\n";
+        return 1;
+    }
+
     return 0;
 }

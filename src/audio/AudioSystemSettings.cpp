@@ -4,31 +4,43 @@
 
 #include "AudioSystemSettings.hpp"
 
-unsigned int AudioSystemSettings::getNumChannels() const {
-    return m_numChannels;
-}
+using namespace fls;
 
-unsigned long AudioSystemSettings::getBufferSize() const {
-    return m_bufferSize;
+AudioSystemSettings::AudioSystemSettings(double sampleRate, unsigned long bufferSize, unsigned int numInputChannels, unsigned int numOutputChannels)
+        : m_sampleRate(sampleRate),
+          m_bufferSize(bufferSize),
+          m_numInputChannels(numInputChannels),
+          m_numOutputChannels(numOutputChannels){}
+
+void AudioSystemSettings::setSampleRate(double sampleRate) {
+    m_sampleRate = sampleRate;
 }
 
 double AudioSystemSettings::getSampleRate() const {
     return m_sampleRate;
 }
 
-AudioSystemSettings::AudioSystemSettings(double sampleRate, unsigned long bufferSize, unsigned int numChannels)
-        : m_sampleRate(sampleRate),
-          m_bufferSize(bufferSize),
-          m_numChannels(numChannels) {}
-
-void AudioSystemSettings::setSampleRate(double sampleRate) {
-    m_sampleRate = sampleRate;
-}
-
 void AudioSystemSettings::setBufferSize(unsigned long bufferSize) {
     m_bufferSize = bufferSize;
 }
 
-void AudioSystemSettings::setNumChannels(unsigned int numChannels) {
-    m_numChannels = numChannels;
+unsigned long AudioSystemSettings::getBufferSize() const {
+    return m_bufferSize;
 }
+
+unsigned int AudioSystemSettings::getNumInputChannels() const {
+    return m_numInputChannels;
+}
+
+void AudioSystemSettings::setNumInputChannels(unsigned int mNumInputChannels) {
+    m_numInputChannels = mNumInputChannels;
+}
+
+unsigned int AudioSystemSettings::getNumOutputChannels() const {
+    return m_numOutputChannels;
+}
+
+void AudioSystemSettings::setNumOutputChannels(unsigned int mNumOutputChannels) {
+    m_numOutputChannels = mNumOutputChannels;
+}
+

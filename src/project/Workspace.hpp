@@ -7,13 +7,18 @@
 #include "../audio/AudioSystemSettings.hpp"
 #include "../audio/AudioSystem.hpp"
 
-struct Workspace {
-    explicit Workspace(AudioSystemSettings audioSystemSettings);
+namespace fls {
+    struct Workspace {
+        explicit Workspace(AudioSystemSettings audioSystemSettings);
 
-private:
-    std::shared_ptr<AudioSystemSettings> m_audioSystemSettings;
-    std::unique_ptr<AudioSystem> m_audioSystem;
-};
+        void open();
+    private:
+        std::shared_ptr<AudioSystemSettings> m_audioSystemSettings;
+        std::unique_ptr<AudioSystem> m_audioSystem;
+    };
+}
+
+
 
 
 

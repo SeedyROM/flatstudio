@@ -9,28 +9,41 @@
 
 #include "AudioSystemSettings.hpp"
 
-struct AudioSystemInitException : std::exception {
-    explicit AudioSystemInitException(int errorNumber);
+namespace fls {
 
-    [[nodiscard]] const char *what() const noexcept override;
+    struct AudioSystemInitException : std::exception {
+        explicit AudioSystemInitException(int errorNumber);
 
-private:
-    int m_errorNumber;
-};
+        [[nodiscard]] const char *what() const noexcept override;
 
-struct AudioSystem {
-    explicit AudioSystem(std::shared_ptr<AudioSystemSettings> systemSettings);
+    private:
+        int m_errorNumber;
+    };
 
-    ~AudioSystem();
+    struct AudioSystem {
+        explicit AudioSystem(std::shared_ptr<AudioSystemSettings> systemSettings);
 
-    [[nodiscard]] const std::shared_ptr<AudioSystemSettings> &getSystemSettings() const;
+        ~AudioSystem();
 
-    void setSystemSettings(std::shared_ptr<AudioSystemSettings> systemSettings);
+        [[nodiscard]] const std::shared_ptr<AudioSystemSettings> &getSystemSettings() const;
 
-    int init();
+        void setSystemSettings(std::shared_ptr<AudioSystemSettings> systemSettings);
 
-private:
-    std::shared_ptr<AudioSystemSettings> m_systemSettings;
-    bool initialized = false;
-};
+        void init();
 
+        void start();
+
+    private:
+        bool m_initialized = false;
+        bool m_started = false;
+
+        std::shared_ptr<AudioSystemSettings> m_systemSettings;
+        std::unique_ptr<PaDeviceIndex> m_inputDeviceIndex;
+        std::unique_ptr<PaDeviceIndex> m_outputDeviceIndex;
+        std::unique_ptr<PaDeviceInfo> m_inputDeviceInfo;
+        std::unique_ptr<PaDeviceInfo> m_outputDeviceInfo;
+        std::unique_ptr<PaStreamParameters> m_inputStreamParameters;
+        std::unique_ptr<PaStreamParameters> m_outputStreamParameters;
+        std::unique_ptr<PaStream*> m_stream;
+    };
+}
